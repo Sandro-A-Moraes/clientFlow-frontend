@@ -1,5 +1,75 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@theme{
+:root {
   --font-primary: var(--font-plus-jakarta-sans);
+
+  /* Brand */
+  --color-brand-50: #eff0ff;
+  --color-brand-100: #d9dbff;
+  --color-brand-200: #c3c6ff;
+  --color-brand-300: #aeb1ff;
+  --color-brand-400: #a3a6ff;
+  --color-brand-500: #6063ee;
+  --color-brand-600: #4f52de;
+  --color-brand-700: #3f42c6;
+  --color-brand-800: #2c2f8f;
+  --color-brand-900: #0f00a4;
+
+  /* Neutrals (dark surfaces) */
+  --color-neutral-950: #0c0e14;
+  --color-neutral-900: #11131a;
+  --color-neutral-850: #171921;
+  --color-neutral-800: #1d1f27;
+  --color-neutral-750: #23262e;
+  --color-neutral-700: #2a2d36;
+  --color-neutral-600: #46484f;
+  --color-neutral-500: #74757d;
+  --color-neutral-400: #8c8e96;
+  --color-neutral-300: #aaaab3;
+  --color-neutral-200: #c7c8cf;
+  --color-neutral-100: #e5e4ed;
+
+  /* Semantic aliases */
+  --color-bg-canvas: var(--color-neutral-950);
+  --color-bg-surface: var(--color-neutral-850);
+  --color-bg-elevated: var(--color-neutral-800);
+  --color-bg-soft: var(--color-neutral-750);
+
+  --color-text-primary: var(--color-neutral-100);
+  --color-text-secondary: var(--color-neutral-300);
+  --color-text-muted: var(--color-neutral-500);
+  --color-text-link: var(--color-brand-400);
+
+  --color-border-subtle: rgb(70 72 79 / 0.1);
+  --color-border-default: rgb(70 72 79 / 0.2);
+  --color-border-strong: rgb(70 72 79 / 0.3);
+
+  --color-overlay-card: rgb(23 25 33 / 0.8);
+  --color-shadow-card: rgb(0 0 0 / 0.25);
+  --color-shadow-brand: rgb(163 166 255 / 0.1);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-canvas);
+    color: var(--color-text-primary);
+    font-family: var(--font-primary), sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-register-mobile {
+    background-image:
+      radial-gradient(
+        55.154% 136.33% at 0% 0%,
+        rgb(99 102 241 / 0.15) 0%,
+        rgb(99 102 241 / 0) 50%
+      ),
+      radial-gradient(
+        55.154% 136.33% at 100% 100%,
+        rgb(162 142 252 / 0.1) 0%,
+        rgb(162 142 252 / 0) 50%
+      ),
+      linear-gradient(90deg, #0c0e14 0%, #0c0e14 100%);
+  }
 }
