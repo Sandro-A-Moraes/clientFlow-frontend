@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-:root {
+@theme {
   --font-primary: var(--font-plus-jakarta-sans);
 
   /* Brand */
