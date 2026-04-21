@@ -1,5 +1,5 @@
 @import "tailwindcss";
 
 @theme{
-  
+  --font-primary: var(--font-plus-jakarta-sans);
 }
