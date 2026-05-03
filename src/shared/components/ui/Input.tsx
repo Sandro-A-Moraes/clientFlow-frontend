@@ -7,6 +7,7 @@ interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rightIcon?: ReactNode;
   label?: string;
   value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -16,6 +17,7 @@ const Input = ({
   rightIcon,
   label,
   value,
+  onChange,
 }: IInputProps) => {
   return (
     <div className='flex flex-col gap-1.5 w-full'>
@@ -35,6 +37,7 @@ const Input = ({
           placeholder={placeholder}
           className='bg-[#171921] text-neutral-300 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#251847] w-full pl-10 pr-4 py-3 rounded-lg'
           value={value}
+          onChange={onChange}
         />
         {rightIcon && (
           <div className='absolute right-3 top-1/2 transform -translate-y-1/2'>

@@ -1,8 +1,9 @@
 'use client';
 
 import Input from '@/shared/components/ui/Input';
-import { UserIcon } from 'lucide-react';
+import { Lock, Mail, UserIcon } from 'lucide-react';
 import { ReactNode, useState } from 'react';
+import TermsAcceptance from './TermsAcceptance';
 
 type fieldKey = 'fullName' | 'email' | 'password';
 
@@ -24,17 +25,17 @@ const fields: fieldConfig[] = [
   },
   {
     key: 'email',
-    label: 'Email',
+    label: 'Email Address',
     placeholder: 'Your email',
     type: 'email',
-    icon: <UserIcon width={18} height={18} className='text-neutral-500' />,
+    icon: <Mail width={18} height={18} className='text-neutral-500' />,
   },
   {
     key: 'password',
     label: 'Password',
     placeholder: 'Your password',
     type: 'password',
-    icon: <UserIcon width={18} height={18} className='text-neutral-500' />,
+    icon: <Lock width={18} height={18} className='text-neutral-500' />,
   },
 ];
 
@@ -69,6 +70,8 @@ const RegisterForm = () => {
             }
           />
         ))}
+
+        <TermsAcceptance />
       </div>
     </form>
   );
