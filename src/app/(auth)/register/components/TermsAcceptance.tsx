@@ -1,5 +1,5 @@
 import cn from '@/shared/lib/utils/cn';
-import React from 'react';
+import Modal from '@/shared/components/ui/Modal';
 
 const TermsAcceptance = () => {
   return (
@@ -10,8 +10,23 @@ const TermsAcceptance = () => {
       />
       <p className='text-xs'>
         I agree to the{' '}
-        <span className={cn('text-brand-400')}>Terms of Service</span> and{' '}
-        <span className={cn('text-brand-400')}>Privacy Policy</span>
+        <Modal
+          className='border-brand-600 bg-neutral-800'
+          title='Terms of Service'
+          trigger={
+            <span className={cn('text-brand-400')}>Terms of Service</span>
+          }
+        >
+          Terms of Service
+        </Modal>{' '}
+        and{' '}
+        <Modal
+          className=''
+          title='Privacy Policy'
+          trigger={<span className={cn('text-brand-400')}>Privacy Policy</span>}
+        >
+          Privacy Policy
+        </Modal>
       </p>
     </div>
   );

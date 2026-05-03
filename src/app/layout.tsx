@@ -31,7 +31,12 @@ export default function RootLayout({
         geist.variable,
       )}
     >
-      <body className={cn('min-h-full', 'flex', 'flex-col')}>{children}</body>
+      <body className={cn('min-h-full', 'flex', 'flex-col')}>
+        <div vaul-drawer-wrapper='' className='bg-background'>
+          {' '}
+          {children}{' '}
+        </div>
+      </body>
     </html>
   );
 }
