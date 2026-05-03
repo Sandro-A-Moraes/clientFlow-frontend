@@ -39,7 +39,13 @@ const Modal = ({
   return (
     <Credenza open={open} onOpenChange={handleOpenChange}>
       <CredenzaTrigger asChild>{trigger}</CredenzaTrigger>
-      <CredenzaContent className={cn('sm:max-w-lg', className)}>
+      <CredenzaContent
+        className={cn(
+          'sm:max-w-lg',
+          'border-brand-600 bg-neutral-800',
+          className,
+        )}
+      >
         <CredenzaHeader>
           <CredenzaTitle>{title}</CredenzaTitle>
           <CredenzaDescription>{description}</CredenzaDescription>
