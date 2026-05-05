@@ -1,6 +1,3 @@
-import cn from '@/shared/lib/utils/cn';
-import Modal from '@/shared/components/ui/Modal';
-
 type termsFields = 'terms' | 'privacy';
 
 type termsConfig = {
@@ -82,23 +79,10 @@ const TermsAcceptance = () => {
         type='checkbox'
         className='appearance-none w-4 h-4 border border-neutral-600 rounded-sm'
       />
-      <p className='text-xs flex flex-wrap gap-1'>
+      <p className='text-xs flex flex-wrap gap-1 text-white'>
         I agree to the{' '}
         {terms.map((term, index) => (
           <span key={term.key} className='flex items-center gap-1'>
-            <Modal
-              title={term.title}
-              trigger={
-                <button type='button' className='text-brand-400 underline'>
-                  {term.title.trim()}
-                </button>
-              }
-            >
-              <p className='whitespace-pre-wrap text-sm text-neutral-300 mt-4'>
-                {term.content}
-              </p>
-            </Modal>
-
             {index < terms.length - 1 && <span> and </span>}
           </span>
         ))}
