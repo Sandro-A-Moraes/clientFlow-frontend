@@ -39,7 +39,13 @@ const fields: fieldConfig[] = [
   },
 ];
 
-const RegisterForm = () => {
+const RegisterForm = ({
+  termsContent,
+  privacyContent,
+}: {
+  termsContent: string;
+  privacyContent: string;
+}) => {
   const [values, setValues] = useState<Record<fieldKey, string>>({
     fullName: '',
     email: '',
@@ -71,7 +77,10 @@ const RegisterForm = () => {
           />
         ))}
 
-        <TermsAcceptance />
+        <TermsAcceptance
+          termsContent={termsContent}
+          privacyContent={privacyContent}
+        />
       </div>
     </form>
   );

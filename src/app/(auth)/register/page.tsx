@@ -1,4 +1,5 @@
 import { CloudCheck } from 'lucide-react';
+import { getLegalContent } from './utils/getLegalContent';
 import RegisterForm from './components/RegisterForm';
 
 const page = () => {
@@ -17,7 +18,10 @@ const page = () => {
 
       {/* Register Card */}
       <div className='w-full flex flex-col items-center bg-[#14171E] rounded-2xl p-8'>
-        <RegisterForm />
+        <RegisterForm
+          termsContent={getLegalContent('terms.md')}
+          privacyContent={getLegalContent('privacy.md')}
+        />
       </div>
 
       {/* LinkMark */}
