@@ -4,6 +4,7 @@ import Input from '@/shared/components/ui/Input';
 import { Lock, Mail, UserIcon } from 'lucide-react';
 import { ReactNode, useState } from 'react';
 import TermsAcceptance from './TermsAcceptance';
+import Button from '@/shared/components/ui/Button';
 
 type fieldKey = 'fullName' | 'email' | 'password';
 
@@ -82,6 +83,10 @@ const RegisterForm = ({
           privacyContent={privacyContent}
         />
       </div>
+
+      <Button type='submit' className='mt-5'>
+        Create Account
+      </Button>
     </form>
   );
 };
