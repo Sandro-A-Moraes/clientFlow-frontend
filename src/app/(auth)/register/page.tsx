@@ -4,7 +4,7 @@ import RegisterForm from './components/RegisterForm';
 
 const page = () => {
   return (
-    <div className='flex flex-col items-center gap-10 w-full'>
+    <div className='flex flex-col items-center gap-10 w-full max-w-100'>
       {/* Logo Header */}
       <div className='flex flex-col items-center gap-2'>
         <div className='py-1.5 bg-bg-soft w-12 flex items-center justify-center h-8 rounded-xl'>

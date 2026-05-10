@@ -21,7 +21,7 @@ const Button = ({
     <button
       type={type}
       className={cn(
-        'bg-linear-to-r from-brand-600 to-brand-400 rounded-xl py-3.5 text-sm text-brand-900 font-bold text-center',
+        'bg-linear-to-r from-brand-600 to-brand-400 rounded-xl py-3.5 text-sm text-brand-900 font-bold text-center cursor-pointer',
         disabled && 'opacity-50 cursor-not-allowed',
         className,
       )}

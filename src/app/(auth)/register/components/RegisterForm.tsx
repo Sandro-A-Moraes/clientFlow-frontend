@@ -10,6 +10,7 @@ import TermsAcceptance from './TermsAcceptance';
 import Button from '@/shared/components/ui/Button';
 import { toast } from 'sonner';
 import { useRegister } from '@/shared/hooks/use-register';
+import { Controller } from 'react-hook-form';
 
 type fieldKey = 'name' | 'email' | 'password';
 
@@ -52,11 +53,12 @@ const RegisterForm = ({
   termsContent: string;
   privacyContent: string;
 }) => {
-  const [termsAccepted, setTermsAccepted] = useState(false);
   const { mutate, isPending } = useRegister();
   const {
     register,
     handleSubmit,
+    control,
+    watch,
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
@@ -68,6 +70,7 @@ const RegisterForm = ({
     },
     mode: 'onChange',
   });
+  const termsAccepted = watch('termsAccepted');
 
   async function onSubmit(data: RegisterFormData) {
     mutate(data, {
@@ -111,12 +114,17 @@ const RegisterForm = ({
           </div>
         ))}
 
-        <TermsAcceptance
-          termsContent={termsContent}
-          privacyContent={privacyContent}
-          accepted={termsAccepted}
-          onAcceptChange={setTermsAccepted}
-          {...register('termsAccepted')}
+        <Controller
+          control={control}
+          name='termsAccepted'
+          render={({ field }) => (
+            <TermsAcceptance
+              termsContent={termsContent}
+              privacyContent={privacyContent}
+              accepted={field.value}
+              onAcceptChange={field.onChange}
+            />
+          )}
         />
       </div>
 
