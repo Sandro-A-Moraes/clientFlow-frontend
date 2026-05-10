@@ -4,6 +4,7 @@ import cn from '@/shared/lib/utils/cn';
 import './globals.css';
 import { Toaster } from 'sonner';
 import { ReactQueryProvider } from '@/lib/react-query/provider';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -39,6 +40,7 @@ export default function RootLayout({
             {' '}
             {children} <Toaster richColors position='top-right' />
           </div>
+          <ReactQueryDevtools initialIsOpen={false} />
         </ReactQueryProvider>
       </body>
     </html>
