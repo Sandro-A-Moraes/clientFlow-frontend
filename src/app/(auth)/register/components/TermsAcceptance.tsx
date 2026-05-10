@@ -3,9 +3,13 @@ import { TermsModal } from './TermsModal';
 const TermsAcceptance = ({
   termsContent,
   privacyContent,
+  accepted,
+  onAcceptChange,
 }: {
   termsContent: string;
   privacyContent: string;
+  accepted: boolean;
+  onAcceptChange: (accepted: boolean) => void;
 }) => {
   return (
     <div className='py-1 flex gap-3'>
@@ -13,6 +17,8 @@ const TermsAcceptance = ({
         <input
           type='checkbox'
           className='peer appearance-none h-4 w-4 border border-neutral-600 rounded-sm checked:bg-brand-500 checked:border-brand-500 focus:outline-none'
+          checked={accepted}
+          onChange={(e) => onAcceptChange(e.target.checked)}
         />
         <svg
           viewBox='0 0 16 16'

@@ -6,8 +6,9 @@ import { ReactNode, useState } from 'react';
 import TermsAcceptance from './TermsAcceptance';
 import Button from '@/shared/components/ui/Button';
 import { toast } from 'sonner';
+import { useRegister } from '@/shared/hooks/use-register';
 
-type fieldKey = 'fullName' | 'email' | 'password';
+type fieldKey = 'name' | 'email' | 'password';
 
 type fieldConfig = {
   key: fieldKey;
@@ -19,8 +20,8 @@ type fieldConfig = {
 
 const fields: fieldConfig[] = [
   {
-    key: 'fullName',
-    label: 'Full Name',
+    key: 'name',
+    label: 'Name',
     placeholder: 'Your name',
     type: 'text',
     icon: <UserIcon width={18} height={18} className='text-neutral-500' />,
@@ -49,13 +50,27 @@ const RegisterForm = ({
   privacyContent: string;
 }) => {
   const [values, setValues] = useState<Record<fieldKey, string>>({
-    fullName: '',
+    name: '',
     email: '',
     password: '',
   });
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const { mutate, isPending } = useRegister();
+
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate(
+      { ...values, termsAccepted },
+      {
+        onSuccess: () => {
+          toast.success('Account created successfully!');
+        },
+      },
+    );
+  };
 
   return (
-    <form className='flex flex-col w-full'>
+    <form className='flex flex-col w-full' onSubmit={handleSubmit}>
       <div className='flex flex-col w-full gap-1'>
         <h2 className='text-neutral-100 text-xl font-bold'>Create Account</h2>
         <p className='text-neutral-300 text-sm font-normal'>
@@ -82,10 +97,16 @@ const RegisterForm = ({
         <TermsAcceptance
           termsContent={termsContent}
           privacyContent={privacyContent}
+          accepted={termsAccepted}
+          onAcceptChange={setTermsAccepted}
         />
       </div>
 
-      <Button type='submit' className='mt-5'>
+      <Button
+        type='submit'
+        className='mt-5'
+        disabled={!termsAccepted || isPending}
+      >
         Create Account
       </Button>
     </form>

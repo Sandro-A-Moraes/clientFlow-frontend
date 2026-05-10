@@ -7,17 +7,26 @@ interface ButtonProps {
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
-const Button = ({ type, className, children, onClick }: ButtonProps) => {
+const Button = ({
+  type,
+  className,
+  children,
+  onClick,
+  disabled,
+}: ButtonProps) => {
   return (
     <button
       type={type}
       className={cn(
         'bg-linear-to-r from-brand-600 to-brand-400 rounded-xl py-3.5 text-sm text-brand-900 font-bold text-center',
+        disabled && 'opacity-50 cursor-not-allowed',
         className,
       )}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
