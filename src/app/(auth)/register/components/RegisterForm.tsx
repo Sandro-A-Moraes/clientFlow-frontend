@@ -5,6 +5,7 @@ import { Lock, Mail, UserIcon } from 'lucide-react';
 import { ReactNode, useState } from 'react';
 import TermsAcceptance from './TermsAcceptance';
 import Button from '@/shared/components/ui/Button';
+import { toast } from 'sonner';
 
 type fieldKey = 'fullName' | 'email' | 'password';
 

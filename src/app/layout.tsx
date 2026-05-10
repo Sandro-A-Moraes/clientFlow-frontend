@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Geist } from 'next/font/google';
 import cn from '@/shared/lib/utils/cn';
 import './globals.css';
+import { Toaster } from 'sonner';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -34,7 +35,7 @@ export default function RootLayout({
       <body className={cn('min-h-full', 'flex', 'flex-col')}>
         <div vaul-drawer-wrapper='' className='bg-background'>
           {' '}
-          {children}{' '}
+          {children} <Toaster richColors position='top-right' />
         </div>
       </body>
     </html>
