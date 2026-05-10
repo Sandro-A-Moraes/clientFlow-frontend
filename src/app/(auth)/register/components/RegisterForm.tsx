@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema, RegisterFormData } from '../schemas/register.schema';
 import Input from '@/shared/components/ui/Input';
 import { Lock, Mail, UserIcon } from 'lucide-react';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import TermsAcceptance from './TermsAcceptance';
 import Button from '@/shared/components/ui/Button';
 import { toast } from 'sonner';
@@ -137,6 +137,7 @@ const RegisterForm = ({
         type='submit'
         className='mt-5'
         disabled={!termsAccepted || isPending}
+        isLoading={isPending}
       >
         Create Account
       </Button>
