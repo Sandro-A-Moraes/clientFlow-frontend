@@ -1,4 +1,7 @@
-import { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
+'use client';
+
+import { forwardRef, InputHTMLAttributes, ReactNode, useState } from 'react';
+import { Eye, EyeClosed } from 'lucide-react';
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   leftIcon?: ReactNode;
@@ -8,6 +11,19 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = forwardRef<HTMLInputElement, IInputProps>(
   ({ leftIcon, rightIcon, label, className, ...props }, ref) => {
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+      setShowPassword((prev) => !prev);
+    };
+
+    const inputType =
+      props.type === 'password'
+        ? showPassword
+          ? 'text'
+          : 'password'
+        : props.type;
+
     return (
       <div className='flex flex-col gap-1.5 w-full'>
         {label && (
@@ -40,12 +56,22 @@ const Input = forwardRef<HTMLInputElement, IInputProps>(
               ${className || ''}
             `}
             {...props}
+            type={inputType}
           />
 
           {rightIcon && (
             <div className='absolute right-3 top-1/2 -translate-y-1/2'>
               {rightIcon}
             </div>
+          )}
+          {props.type === 'password' && (
+            <button
+              type='button'
+              onClick={togglePasswordVisibility}
+              className='absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 cursor-pointer'
+            >
+              {showPassword ? <EyeClosed /> : <Eye />}
+            </button>
           )}
         </div>
       </div>

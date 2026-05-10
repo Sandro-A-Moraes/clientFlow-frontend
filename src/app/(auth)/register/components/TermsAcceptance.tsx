@@ -16,7 +16,7 @@ const TermsAcceptance = ({
       <span className='relative inline-flex h-4 w-4 items-center justify-center'>
         <input
           type='checkbox'
-          className='peer appearance-none h-4 w-4 border border-neutral-600 rounded-sm checked:bg-brand-500 checked:border-brand-500 focus:outline-none'
+          className='peer appearance-none h-4 w-4 border border-neutral-600 rounded-sm checked:bg-brand-500 checked:border-brand-500 focus:outline-none cursor-pointer'
           checked={accepted}
           onChange={(e) => onAcceptChange(e.target.checked)}
         />
@@ -37,7 +37,7 @@ const TermsAcceptance = ({
       </span>
       <p className='text-xs flex flex-wrap gap-1 text-white'>
         I agree to the{' '}
-        <span className='flex items-center gap-1'>
+        <span className='flex items-center gap-1 '>
           <TermsModal title='Terms of Service' content={termsContent} />
         </span>
         and

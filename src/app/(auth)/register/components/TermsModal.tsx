@@ -19,7 +19,9 @@ export function TermsModal({ title, content }: TermsModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className='text-brand-300 hover:underline'>{title}</button>
+        <button className='text-brand-300 hover:underline cursor-pointer'>
+          {title}
+        </button>
       </DialogTrigger>
 
       <DialogContent

@@ -20,6 +20,7 @@ type fieldConfig = {
   placeholder: string;
   type: string;
   icon: ReactNode;
+  errorMessage?: string;
 };
 
 const fields: fieldConfig[] = [
@@ -29,6 +30,8 @@ const fields: fieldConfig[] = [
     placeholder: 'Your name',
     type: 'text',
     icon: <UserIcon width={18} height={18} className='text-neutral-500' />,
+    errorMessage:
+      'Name must be between 2 and 100 characters and can only contain letters and spaces',
   },
   {
     key: 'email',
@@ -36,6 +39,7 @@ const fields: fieldConfig[] = [
     placeholder: 'Your email',
     type: 'email',
     icon: <Mail width={18} height={18} className='text-neutral-500' />,
+    errorMessage: 'Please enter a valid email address',
   },
   {
     key: 'password',
@@ -43,6 +47,7 @@ const fields: fieldConfig[] = [
     placeholder: 'Your password',
     type: 'password',
     icon: <Lock width={18} height={18} className='text-neutral-500' />,
+    errorMessage: 'Password must be at least 8 characters long',
   },
 ];
 
@@ -108,7 +113,7 @@ const RegisterForm = ({
             />
             {errors[field.key] && (
               <p className='text-red-500 text-xs mt-1'>
-                {errors[field.key]?.message}
+                {field.errorMessage || errors[field.key]?.message?.toString()}
               </p>
             )}
           </div>
