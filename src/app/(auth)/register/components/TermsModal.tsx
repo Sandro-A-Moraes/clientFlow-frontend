@@ -64,7 +64,7 @@ export function TermsModal({ title, content }: TermsModalProps) {
           <DialogClose asChild>
             <Button
               type='button'
-              className='bg-brand-500 hover:bg-brand-600 text-white'
+              className='bg-brand-500 hover:bg-brand-600 text-white cursor-pointer'
             >
               Close
             </Button>
