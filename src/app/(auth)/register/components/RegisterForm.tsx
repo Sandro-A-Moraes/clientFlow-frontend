@@ -1,5 +1,8 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { registerSchema, RegisterFormData } from '../schemas/register.schema';
 import Input from '@/shared/components/ui/Input';
 import { Lock, Mail, UserIcon } from 'lucide-react';
 import { ReactNode, useState } from 'react';
@@ -49,28 +52,39 @@ const RegisterForm = ({
   termsContent: string;
   privacyContent: string;
 }) => {
-  const [values, setValues] = useState<Record<fieldKey, string>>({
-    name: '',
-    email: '',
-    password: '',
-  });
   const [termsAccepted, setTermsAccepted] = useState(false);
   const { mutate, isPending } = useRegister();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      termsAccepted: false,
+    },
+    mode: 'onChange',
+  });
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    mutate(
-      { ...values, termsAccepted },
-      {
-        onSuccess: () => {
-          toast.success('Account created successfully!');
-        },
+  async function onSubmit(data: RegisterFormData) {
+    mutate(data, {
+      onSuccess: () => {
+        toast.success('Account created successfully! Please log in.');
       },
-    );
-  };
+      onError: (error: unknown) => {
+        if (error instanceof Error) {
+          toast.error(error.message);
+          return;
+        }
+      },
+    });
+  }
 
   return (
-    <form className='flex flex-col w-full' onSubmit={handleSubmit}>
+    <form className='flex flex-col w-full' onSubmit={handleSubmit(onSubmit)}>
       <div className='flex flex-col w-full gap-1'>
         <h2 className='text-neutral-100 text-xl font-bold'>Create Account</h2>
         <p className='text-neutral-300 text-sm font-normal'>
@@ -81,17 +95,20 @@ const RegisterForm = ({
       {/* Inputs */}
       <div className='pt-7 flex flex-col gap-5'>
         {fields.map((field) => (
-          <Input
-            key={field.key}
-            type={field.type}
-            label={field.label}
-            placeholder={field.placeholder}
-            leftIcon={field.icon}
-            value={values[field.key]}
-            onChange={(e) =>
-              setValues({ ...values, [field.key]: e.target.value })
-            }
-          />
+          <div key={field.key} className='flex flex-col gap-2'>
+            <Input
+              type={field.type}
+              label={field.label}
+              placeholder={field.placeholder}
+              leftIcon={field.icon}
+              {...register(field.key)}
+            />
+            {errors[field.key] && (
+              <p className='text-red-500 text-xs mt-1'>
+                {errors[field.key]?.message}
+              </p>
+            )}
+          </div>
         ))}
 
         <TermsAcceptance
@@ -99,6 +116,7 @@ const RegisterForm = ({
           privacyContent={privacyContent}
           accepted={termsAccepted}
           onAcceptChange={setTermsAccepted}
+          {...register('termsAccepted')}
         />
       </div>
 
