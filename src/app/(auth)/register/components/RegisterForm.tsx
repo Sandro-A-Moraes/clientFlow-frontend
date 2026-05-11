@@ -60,6 +60,7 @@ const RegisterForm = ({
   termsContent: string;
   privacyContent: string;
 }) => {
+  const router = useRouter();
   const { mutate, isPending } = useRegister();
   const {
     register,
@@ -79,10 +80,19 @@ const RegisterForm = ({
   });
   const termsAccepted = watch('termsAccepted');
 
+  const TOAST_DURATION = 3000;
+
   async function onSubmit(data: RegisterFormData) {
     mutate(data, {
-      onSuccess: () => {
-        toast.success('Account created successfully! Please log in.');
+      onSuccess: async () => {
+        toast.success('Account created successfully! Please log in.', {
+          duration: TOAST_DURATION,
+        });
+
+        setTimeout(() => {
+          router.push('/login');
+        }, TOAST_DURATION);
+        // Immediate navigation without waiting for toast to disappear
       },
       onError: (error: unknown) => {
         if (error instanceof Error) {
