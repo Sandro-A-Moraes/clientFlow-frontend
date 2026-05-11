@@ -23,9 +23,6 @@ const page = () => {
           privacyContent={getLegalContent('privacy.md')}
         />
       </div>
-
-      {/* LinkMark */}
-      <p></p>
     </div>
   );
 };
