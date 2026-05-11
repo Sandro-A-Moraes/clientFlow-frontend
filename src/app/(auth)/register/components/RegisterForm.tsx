@@ -11,6 +11,8 @@ import Button from '@/shared/components/ui/Button';
 import { toast } from 'sonner';
 import { useRegister } from '@/shared/hooks/use-register';
 import { Controller } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 type fieldKey = 'name' | 'email' | 'password';
 
@@ -141,6 +143,13 @@ const RegisterForm = ({
       >
         Create Account
       </Button>
+
+      <p className='text-sm text-neutral-300 mt-6 text-center'>
+        Already have an account?{' '}
+        <Link href='/login' className='text-brand-400 hover:underline'>
+          Log in
+        </Link>
+      </p>
     </form>
   );
 };
