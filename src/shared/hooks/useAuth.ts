@@ -7,7 +7,7 @@ const useAuth = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['auth'],
+    queryKey: ['me'],
     queryFn: authService.me,
     retry: false,
   });
