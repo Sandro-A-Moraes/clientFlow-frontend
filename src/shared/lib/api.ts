@@ -10,6 +10,7 @@ export async function api<T>(
 ): Promise<T> {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
     ...config,
+    credentials: 'include', // Include cookies for authentication
     headers: {
       'Content-Type': 'application/json',
       ...(config?.headers || {}),
