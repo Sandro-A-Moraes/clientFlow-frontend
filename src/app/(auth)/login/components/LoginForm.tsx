@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { LoginFormData, loginSchema } from '../schemas/login.schema';
-import { useLogin } from '@/shared/hooks/use-login';
+import { useLogin } from '../hooks/useLogin';
 
 type fieldKey = 'email' | 'password';
 
@@ -58,23 +58,24 @@ const LoginForm = () => {
     mode: 'onChange',
   });
 
-  const TOAST_DURATION = 3000;
+  const TOAST_DURATION = 2000;
 
   async function onSubmit(data: LoginFormData) {
     mutate(data, {
       onSuccess: async () => {
+        console.log('SUCCESS');
         toast.success('Logged in successfully!', {
           duration: TOAST_DURATION,
         });
 
         setTimeout(() => {
+          console.log('REDIRECT');
           router.push('/dashboard');
         }, TOAST_DURATION);
       },
       onError: (error: unknown) => {
         if (error instanceof Error) {
           toast.error(error.message);
-          return;
         }
       },
     });

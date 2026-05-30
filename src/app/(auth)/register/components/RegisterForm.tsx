@@ -9,7 +9,7 @@ import { ReactNode } from 'react';
 import TermsAcceptance from './TermsAcceptance';
 import Button from '@/shared/components/ui/Button';
 import { toast } from 'sonner';
-import { useRegister } from '@/shared/hooks/use-register';
+import { useRegister } from '@/app/(auth)/login/hooks/use-register';
 import { Controller } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
