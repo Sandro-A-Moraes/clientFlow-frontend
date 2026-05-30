@@ -1,3 +1,4 @@
+import { IUser } from '@/shared/types/user';
 import { api } from '../api';
 
 interface RegisterDTO {
@@ -12,23 +13,21 @@ interface LoginDTO {
   password: string;
 }
 
+export interface IPublicUser {
+  id: string;
+  name: string;
+  email: string;
+}
+
 interface LoginResponse {
   accessToken: string;
   refreshToken: string;
-  user: {
-    id: string;
-    name: string;
-    email: string;
-  };
+  user: IPublicUser;
   success: boolean;
 }
 
 interface RegisterResponse {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-  };
+  user: IPublicUser;
   success: boolean;
 }
 
@@ -50,7 +49,16 @@ async function register(data: RegisterDTO): Promise<RegisterResponse> {
   return response;
 }
 
+async function me(): Promise<IPublicUser> {
+  const response = await api<IPublicUser>('/auth/me', {
+    method: 'GET',
+  });
+
+  return response;
+}
+
 export const authService = {
   login,
   register,
+  me,
 };
