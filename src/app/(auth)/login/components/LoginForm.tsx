@@ -63,13 +63,11 @@ const LoginForm = () => {
   async function onSubmit(data: LoginFormData) {
     mutate(data, {
       onSuccess: async () => {
-        console.log('SUCCESS');
         toast.success('Logged in successfully!', {
           duration: TOAST_DURATION,
         });
 
         setTimeout(() => {
-          console.log('REDIRECT');
           router.push('/dashboard');
         }, TOAST_DURATION);
       },
