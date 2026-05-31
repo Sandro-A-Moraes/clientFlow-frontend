@@ -4,7 +4,7 @@ interface RequestConfig extends Omit<RequestInit, 'body'> {
   body?: unknown;
 }
 
-async function refreshToken() {
+async function refreshToken(): Promise<void> {
   const response = await fetch(`${BASE_URL}/auth/refresh`, {
     method: 'POST',
     credentials: 'include',
