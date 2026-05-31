@@ -30,6 +30,12 @@ export interface RegisterResponse {
   success: boolean;
 }
 
+export interface refreshResponse {
+  accessToken: string;
+  refreshToken: string;
+  success: boolean;
+}
+
 async function login(data: LoginDTO): Promise<LoginResponse> {
   const response = await api<LoginResponse>('/auth/login', {
     method: 'POST',
@@ -59,8 +65,27 @@ async function me(): Promise<IPublicUser> {
   return response.user;
 }
 
+async function refresh(data: {
+  refreshToken: string;
+}): Promise<refreshResponse> {
+  const response = await api<refreshResponse>('/auth/refresh', {
+    method: 'POST',
+    body: data,
+  });
+
+  return response;
+}
+
+export async function logout(): Promise<void> {
+  await api('/auth/logout', {
+    method: 'POST',
+  });
+}
+
 export const authService = {
   login,
   register,
   me,
+  refresh,
+  logout,
 };
