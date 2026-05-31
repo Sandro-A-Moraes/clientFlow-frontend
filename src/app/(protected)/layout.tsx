@@ -5,7 +5,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const layout = ({ children }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div className='bg-linear-to-b from-neutral-950 to-neutral-800 w-full min-h-screen flex flex-col items-center justify-center'>
       <div>{children}</div>
@@ -14,4 +14,4 @@ const layout = ({ children }: LayoutProps) => {
   );
 };
 
-export default layout;
+export default Layout;

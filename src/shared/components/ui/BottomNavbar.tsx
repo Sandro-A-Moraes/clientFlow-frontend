@@ -1,11 +1,14 @@
+'use client';
+
 import {
   Calendar,
   LayoutDashboard,
   LucideIcon,
   UsersRound,
 } from 'lucide-react';
-import React from 'react';
 import Link from 'next/link';
+import cn from '@/shared/lib/utils/cn';
+import { usePathname } from 'next/navigation';
 
 type navbarItem = {
   id: number;
@@ -36,21 +39,37 @@ const navbarItems: navbarItem[] = [
 ];
 
 const BottomNavbar = () => {
+  const pathname = usePathname();
+
   return (
-    <div className='pt-3 pb-6 bg-neutral-900/80 w-full flex items-center justify-center px-11 absolute bottom-0 text-xs text-neutral-300'>
+    <div
+      className={cn(
+        'pt-3 pb-6 bg-neutral-900/80 w-full flex items-center justify-center px-11 absolute bottom-0 text-xs text-neutral-300',
+      )}
+    >
       <nav className='w-full flex items-center justify-between'>
-        {navbarItems.map((item) => (
-          <Link
-            key={item.id}
-            href={item.href}
-            className='flex flex-col items-center gap-1'
-          >
-            <item.icon width={18} height={18} />
-            <span className='font-medium uppercase tracking-[1px]'>
-              {item.label}
-            </span>
-          </Link>
-        ))}
+        {navbarItems.map((item) => {
+          const isActive =
+            item.href === '/'
+              ? pathname === item.href
+              : pathname.startsWith(item.href);
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.id}
+              href={item.href}
+              className={cn(
+                'flex flex-col items-center gap-1 hover:text-brand-400 transition-colors py-1 px-4 active:bg-brand-500/10 rounded-md',
+                isActive && 'text-brand-400',
+              )}
+            >
+              <Icon width={18} height={18} />
+              <span className='font-medium uppercase tracking-[1px]'>
+                {item.label}
+              </span>
+            </Link>
+          );
+        })}
       </nav>
     </div>
   );
