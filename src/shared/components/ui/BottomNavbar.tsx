@@ -44,10 +44,10 @@ const BottomNavbar = () => {
   return (
     <div
       className={cn(
-        'pt-3 pb-6 bg-neutral-900/80 w-full flex items-center justify-center px-11 absolute bottom-0 text-xs text-neutral-300',
+        'pt-3 pb-6 bg-neutral-900/80 w-full flex items-center justify-center absolute bottom-0 text-xs text-neutral-300',
       )}
     >
-      <nav className='w-full flex items-center justify-between'>
+      <nav className='w-full flex items-center justify-around'>
         {navbarItems.map((item) => {
           const isActive =
             item.href === '/'
@@ -60,7 +60,7 @@ const BottomNavbar = () => {
               href={item.href}
               className={cn(
                 'flex flex-col items-center gap-1 hover:text-brand-400 transition-colors py-1 px-4 active:bg-brand-500/10 rounded-md',
-                isActive && 'text-brand-400',
+                isActive && 'text-brand-400 bg-brand-500/10',
               )}
             >
               <Icon width={18} height={18} />
