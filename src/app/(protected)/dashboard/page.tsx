@@ -7,7 +7,10 @@ import {
   UserRound,
 } from 'lucide-react';
 
+import MetricCards from './components/MetricCards';
+
 type StatCard = {
+  id: number;
   label: string;
   value: string;
   trend: string;
@@ -23,24 +26,28 @@ type ActivityItem = {
 
 const topStats: StatCard[] = [
   {
+    id: 1,
     label: 'TOTAL CLIENTS',
     value: '1,284',
     trend: '+12%',
     trendColor: 'text-emerald-400',
   },
   {
+    id: 2,
     label: 'MONTHLY GROWTH',
     value: '184',
     trend: '+8%',
     trendColor: 'text-emerald-400',
   },
   {
+    id: 3,
     label: 'ACTIVE RECORDS',
     value: '42',
     trend: 'k',
     trendColor: 'text-neutral-300',
   },
   {
+    id: 4,
     label: 'RETENTION RATE',
     value: '98',
     trend: '%',
@@ -107,22 +114,13 @@ export default function Dashboard() {
 
         <section className='grid grid-cols-2 gap-4'>
           {topStats.map((stat) => (
-            <article
-              key={stat.label}
-              className='rounded-xl border border-neutral-600/20 bg-neutral-850 p-4.25 flex flex-col'
-            >
-              <p className='text-xs leading-4 tracking-[1.2px] text-neutral-300 uppercase'>
-                {stat.label}
-              </p>
-              <div className='mt-auto flex items-end justify-between'>
-                <p className='font-mono text-3xl leading-8 text-neutral-100'>
-                  {stat.value}
-                </p>
-                <p className={`font-mono text-xs leading-4 ${stat.trendColor}`}>
-                  {stat.trend}
-                </p>
-              </div>
-            </article>
+            <MetricCards
+              key={stat.id}
+              label={stat.label}
+              value={stat.value}
+              trend={stat.trend}
+              trendColor={stat.trendColor}
+            />
           ))}
         </section>
 
@@ -136,7 +134,7 @@ export default function Dashboard() {
             </button>
           </div>
 
-          <div className='space-y-3'>
+          <div className='flex flex-col gap-3'>
             {recentActivity.map((item) => {
               const Icon = item.icon;
               return (
