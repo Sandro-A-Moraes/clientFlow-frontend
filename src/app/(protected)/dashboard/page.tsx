@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 
 import MetricCards from './components/MetricCards';
+import ActivityItem from './components/ActivityItem';
 
 type StatCard = {
   id: number;
@@ -18,6 +19,7 @@ type StatCard = {
 };
 
 type ActivityItem = {
+  id: number;
   title: string;
   description: string;
   time: string;
@@ -57,30 +59,35 @@ const topStats: StatCard[] = [
 
 const recentActivity: ActivityItem[] = [
   {
+    id: 1,
     title: 'Julian Thorne',
     description: 'Updated system architecture docs',
     time: '10m ago',
     icon: UserRound,
   },
   {
+    id: 2,
     title: 'Astra Dynamics',
     description: 'Deployed new microservice cluster',
     time: '1h ago',
     icon: Database,
   },
   {
+    id: 3,
     title: 'Security Audit',
     description: 'Completed routine compliance check',
     time: '3h ago',
     icon: ShieldCheck,
   },
   {
+    id: 4,
     title: 'Data Migration',
     description: 'Successfully transferred 5TB',
     time: '5h ago',
     icon: Activity,
   },
   {
+    id: 5,
     title: 'System Maintenance',
     description: 'Scheduled downtime concluded',
     time: '1d ago',
@@ -138,27 +145,13 @@ export default function Dashboard() {
             {recentActivity.map((item) => {
               const Icon = item.icon;
               return (
-                <article
-                  key={`${item.title}-${item.time}`}
-                  className='flex items-center gap-3 rounded-lg p-3'
-                >
-                  <div className='size-10 rounded-full bg-neutral-750 flex items-center justify-center shrink-0'>
-                    <Icon size={14} className='text-brand-300' />
-                  </div>
-
-                  <div className='min-w-0 flex-1'>
-                    <p className='text-sm leading-5 font-medium text-neutral-100'>
-                      {item.title}
-                    </p>
-                    <p className='text-xs leading-4 text-neutral-300'>
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <span className='text-xs leading-4 text-neutral-500 font-mono'>
-                    {item.time}
-                  </span>
-                </article>
+                <ActivityItem
+                  key={item.id}
+                  title={item.title}
+                  description={item.description}
+                  time={item.time}
+                  icon={Icon}
+                />
               );
             })}
           </div>
