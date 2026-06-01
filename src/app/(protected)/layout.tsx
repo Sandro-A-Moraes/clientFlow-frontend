@@ -7,8 +7,10 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className='bg-linear-to-b from-neutral-950 to-neutral-800 w-full min-h-screen flex flex-col items-center justify-center'>
-      <div>{children}</div>
+    <div className='relative bg-linear-to-b from-neutral-950 to-neutral-800 w-full min-h-screen overflow-x-hidden'>
+      <div className='w-full max-w-105 mx-auto min-h-screen pb-28'>
+        {children}
+      </div>
       <BottomNavbar />
     </div>
   );
