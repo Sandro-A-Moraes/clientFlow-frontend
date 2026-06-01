@@ -10,6 +10,7 @@ import {
 import MetricCards from './components/MetricCards';
 import ActivityItem from './components/ActivityItem';
 import ClientHealth from './components/ClientHealth';
+import Button from '@/shared/components/ui/Button';
 
 type StatCard = {
   id: number;
@@ -205,18 +206,12 @@ export default function Dashboard() {
           </div>
         </section>
 
-        <section className='pt-4 space-y-3'>
-          <button className='w-full rounded-lg bg-linear-to-r from-brand-600 to-brand-400 py-3 text-sm leading-5 font-semibold text-brand-900'>
-            New Report
-          </button>
+        <section className='pt-4 flex flex-col gap-4'>
+          <Button variant='primary'>New Report</Button>
 
           <div className='grid grid-cols-2 gap-3'>
-            <button className='w-full rounded-lg border border-neutral-600/20 bg-neutral-800 py-3.25 text-sm leading-5 font-medium text-neutral-100'>
-              Broadcast
-            </button>
-            <button className='w-full rounded-lg border border-neutral-600/20 bg-neutral-800 py-3.25 text-sm leading-5 font-medium text-neutral-100'>
-              Audit Full Logs
-            </button>
+            <Button variant='secondary'>Broadcast</Button>
+            <Button variant='secondary'>Audit Full Logs</Button>
           </div>
         </section>
       </div>
